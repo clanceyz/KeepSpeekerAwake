@@ -1,0 +1,11 @@
+{
+  "device_name": null,
+  "volume": 0.01,
+  "frequencies": [
+    180.0,
+    240.0,
+    320.0
+  ],
+  "burst_seconds": 1.5,
+  "interval_seconds": 45.0
+}

@@ -31,3 +31,5 @@ ENV/
 
 # Local configuration
 .env
+config.json
+app.log

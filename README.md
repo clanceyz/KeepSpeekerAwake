@@ -8,10 +8,12 @@ Bluetooth speakers often go to sleep after a period of silence. When you then pl
 
 ## Solution
 
-This app continuously plays very quiet white noise (~0.001 volume) that:
-- Keeps your Bluetooth speaker in active mode
-- Is completely inaudible to human ears
+This app periodically plays a short quiet multi-tone burst that:
+- Uses normal audible-band frequencies, so Bluetooth codecs and speaker DSPs do not filter it out as silence
+- Resets the selected Bluetooth speaker's sleep timer without constant sound
 - Uses minimal system resources
+
+The default is a 1.5-second low-frequency burst every 45 seconds at `"volume": 0.01`. If it is too loud, lower `"volume"` in `config.json`. If the speaker still sleeps, either raise the volume gradually or reduce `"interval_seconds"`.
 
 ## Installation
 
@@ -19,6 +21,7 @@ This app continuously plays very quiet white noise (~0.001 volume) that:
 2. Run the setup:
    ```powershell
    cd d:\projects\KeepSpeekerAwake
+   py -3 -m venv venv
    .\venv\Scripts\python.exe -m pip install -r requirements.txt
    ```
 
@@ -37,7 +40,14 @@ Double-click **`run.bat`** to start the app without a console window.
 - **Gray speaker icon** = Audio is paused
 - **Right-click** the icon to:
   - **Pause/Resume** - Toggle audio playback
+  - **Output Device** - Pin the Bluetooth speaker or follow the Windows default output
   - **Exit** - Quit the application
+
+Runtime errors are written to `app.log` next to the script.
+
+### Configuration
+
+The app stores local settings in `config.json`, which is intentionally not committed because it may contain your personal device name. Use `config.example.json` as a starting point if needed.
 
 ## Auto-Start with Windows (Optional)
 
